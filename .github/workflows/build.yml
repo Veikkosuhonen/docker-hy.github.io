@@ -4,6 +4,7 @@ on:
   push:
     branches: 
       - master
+  workflow_dispatch:
 
 jobs:
   build:
@@ -22,3 +23,13 @@ jobs:
       with:
         push: true
         tags: veikmaster/devops-with-docker-coursepage:latest
+        
+    - name: Deploy to Heroku
+      uses: CDNievas/heroku-action@v1.0
+      with:
+        # Used for authentication. You can find it in your heroku homepage account settings
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        # Email from Heroku Account
+        heroku_email: veikko@suhonen.net
+        # The appname to use for deploying/updating
+        heroku_app_name: veikmasters-devopsdockeruh
