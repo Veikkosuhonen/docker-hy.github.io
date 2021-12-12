@@ -18,6 +18,8 @@ FROM node:alpine
 
 ENV PORT 80
 
+LABEL com.centurylinklabs.watchtower.enable="true"
+
 RUN npm install -g serve
 
 COPY --from=build-stage /usr/src/app/_site/ /usr/src/html
